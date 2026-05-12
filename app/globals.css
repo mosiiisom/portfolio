@@ -41,6 +41,10 @@
     scroll-behavior: smooth;
   }
 
+  section {
+    scroll-margin-top: 80px; /* compensates for fixed navbar */
+  }
+
   body {
     font-size: var(--font-size-base);
     /* line-height: 1.5;
