@@ -86,6 +86,9 @@ export default function HeroSection() {
         className="absolute inset-0 w-full h-full md:h-auto object-cover"
         transition={{ type: "inertia", stiffness: 10, damping: 30 }}
       >
+        {/* Best quality + smallest size first */}
+        <source src="/videos/hero-loop.webm" type="video/webm" />
+        {/* Fallback for maximum compatibility */}
         <source src="/videos/hero-loop.mp4" type="video/mp4" />
       </motion.video>
 
