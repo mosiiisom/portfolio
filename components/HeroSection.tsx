@@ -83,7 +83,7 @@ export default function HeroSection() {
         loop
         playsInline
         style={{ x, y }}
-        className="absolute inset-0 w-full h-full md:h-auto object-cover"
+        className="absolute inset-0 scale-[103%] w-full h-full md:h-auto object-cover"
         transition={{ type: "inertia", stiffness: 10, damping: 30 }}
       >
         {/* Best quality + smallest size first */}
