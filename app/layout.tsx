@@ -6,6 +6,7 @@ import { GeistPixelSquare } from "geist/font/pixel";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <>
     <html
       lang="en"
       className={cn(GeistSans.variable, GeistMono.variable, GeistPixelSquare.variable, "font-sans", geist.variable)}
@@ -28,5 +30,7 @@ export default function RootLayout({
         {children}
       </body>
     </html>
+    <Analytics/>
+    </>
   );
 }
