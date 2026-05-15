@@ -13,11 +13,6 @@ export default function AboutMe() {
 
   const progress = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
-  // Different movements for each word group
-  const word1Move = useTransform(progress, [0, 1], ["-80px", "0px"]);   // from left
-  const word2Move = useTransform(progress, [0, 1], ["80px", "0px"]);    // from right
-  const word3Move = useTransform(progress, [0, 1], ["-120px", "0px"]);  // stronger from left
-
   const goLeft = useTransform(progress, [0, 1], ["0em", "-2.4em"]);
   const goRight = useTransform(progress, [0, 1], ["0em", "1.6em"]);
 
