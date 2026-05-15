@@ -1,6 +1,6 @@
 "use client"
 import ScrambleText from "./ScrambleText";
-import { motion,useMotionValue, useTransform } from "motion/react";
+import { motion, useMotionValue, useTransform, cubicBezier } from "motion/react";
 import { useEffect, useRef } from "react";
 
 const containerVariants = {
@@ -21,7 +21,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.25, 0.1, 0.25, 1],   // Premium smooth easing
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),   // ← This is the correct way now
     },
   },
 };
@@ -33,7 +33,7 @@ const buttonVariants = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
     },
   },
 };
