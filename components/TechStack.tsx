@@ -222,38 +222,6 @@ export default function TechStack() {
           ))}
 
         </motion.div>
-        {/* Tech Grid */}
-        {/* <motion.div
-          layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 relative z-10"
-        >
-          {filteredTech.map((tech, index) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.04 }}
-              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-              className="group relative bg-[#111111] border border-gray-900 rounded-3xl p-8 hover:border-[#00ff9f]/30 transition-all duration-500 overflow-hidden flex items-center justify-center"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#00ff9f]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className="relative z-10">
-                <tech.icon
-                  className="w-14 h-14 mb-4 transition-all duration-500 group-hover:scale-110 group-hover:text-[#00ff9f] mx-auto"
-                  style={{ color: tech.color }}
-                />
-
-                <h3 className="text-xl text-white/86 mb-1 tracking-tight text-center">
-                  {tech.name}
-                </h3>
-                <p className="text-sm text-white/45 min-h-[40px] text-center">
-                  {tech.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))} */}
-        {/* </motion.div> */}
       </div>
     </section>
   );

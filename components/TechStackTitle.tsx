@@ -9,7 +9,7 @@ export default function TechStackTitle({wrapperClasse="",classnames = ""}) {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 80%", "end 70%"]
+    offset: ["start 40%", "end 60%"]
   });
 
   return (
@@ -17,7 +17,7 @@ export default function TechStackTitle({wrapperClasse="",classnames = ""}) {
       ref={containerRef} 
       className={clsx(wrapperClasse,`letter-scroll flex flex-col justify-center items-center h-[200px] lg:h-[400px] py-2`)}
     >
-      <div className={clsx(classnames,'text-[clamp(48px,10vw,250px)] font-bold tracking-tight leading-[0.9] lg:leading-[0.85] overflow-hidden flex text-white')}>
+      <div className={clsx(classnames,'text-[clamp(48px,8vw,150px)] font-bold tracking-tight leading-[0.9] lg:leading-[0.85] overflow-hidden flex text-white')}>
         
         {/* T */}
         <motion.span 
