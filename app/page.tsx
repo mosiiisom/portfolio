@@ -1,6 +1,8 @@
 import AboutMe from "@/components/AboutMe";
 import HeroSection from "@/components/HeroSection";
+import InteractiveGrid from "@/components/InteractiveGrid";
 import Navbar from "@/components/Navbar";
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
 
@@ -10,6 +12,8 @@ export default function Home() {
       <HeroSection />
 
       <AboutMe/>
+      <TechStack/>
+      {/* <InteractiveGrid /> */}
     </main>
   );
 }

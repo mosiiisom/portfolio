@@ -4,7 +4,10 @@ import { GeistMono } from "geist/font/mono";
 import { GeistPixelSquare } from "geist/font/pixel";
 
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
 
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   title: "Mosi | My Professional Portfolio",
@@ -19,7 +22,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable}`}
+      className={cn(GeistSans.variable, GeistMono.variable, GeistPixelSquare.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full">
         {children}
