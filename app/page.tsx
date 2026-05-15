@@ -1,6 +1,5 @@
 import AboutMe from "@/components/AboutMe";
 import HeroSection from "@/components/HeroSection";
-import InteractiveGrid from "@/components/InteractiveGrid";
 import Navbar from "@/components/Navbar";
 import TechStack from "@/components/TechStack";
 
