@@ -198,14 +198,6 @@ export default function TechStack() {
     offset: ["start start", "end end"]
   });
 
-
-  const [activeFilter, setActiveFilter] = useState("all");
-
-  const filteredTech =
-    activeFilter === "all"
-      ? technologies
-      : technologies.filter((t) => t.category === activeFilter);
-
   return (
     <section id="tech" ref={containerRef} className="py-10 bg-primary relative overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:50px_50px] opacity-30 z-0" />
