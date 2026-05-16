@@ -39,10 +39,10 @@ export default function NavbarHireMeBtn() {
           </svg>
         </div>
       </div>
-      <div className="relative w-full flex justify-center overflow-hidden text-content">
+      <a href="https://app.cal.com/thisismosi" target="_blank" rel="noopener noreferrer"  className="relative w-full flex justify-center overflow-hidden text-content">
         <p className="default-text">Hire Me !</p>
         <p className="absolute translate-y-[100%]">schedule a call !</p>
-      </div>
+      </a>
     </div>
   );
 }
