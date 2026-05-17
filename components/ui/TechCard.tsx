@@ -1,7 +1,7 @@
 // components/TechCard.tsx
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { motion } from "framer-motion";
-import GradientIcon from "./ui/GradientIcon";
+import GradientIcon from "./GradientIcon";
 import { Technology } from "@/lib/types";
 
 interface TechCardProps {
@@ -31,7 +31,7 @@ export default function TechCard({ tech, index }: TechCardProps) {
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center">
           <div className="relative mb-4">
-            <GradientIcon Icon={tech.icon} size={80} speed={1.2} groupHover={true} />
+            <GradientIcon icon={tech.icon} size={80} speed={1.2} groupHover={true} />
           </div>
 
           <h3 className="text-xl font-semibold text-white tracking-tight mb-2">

@@ -23,7 +23,7 @@ import {
   SiGit,
 } from "react-icons/si";
 import { Technology } from "@/lib/types";
-import TechCard from "./TechCard";
+import TechCard from "./ui/TechCard";
 import TechStackTitle from "./ui/TechStackTitle";
 
 const technologies : Technology[] = [

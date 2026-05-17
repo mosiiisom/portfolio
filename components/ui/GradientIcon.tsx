@@ -5,7 +5,7 @@ import { useId,useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface GradientIconProps {
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon: React.ElementType;
   className?: string;
   size?: number;
   speed?: number;
@@ -17,7 +17,7 @@ interface GradientIconProps {
 }
 
 export default function GradientIcon({
-  Icon,
+  icon,
   className,
   size = 58,
   speed = 0.8,
@@ -44,7 +44,7 @@ export default function GradientIcon({
 
     const timeout = setTimeout(extractPath, 10);
     return () => clearTimeout(timeout);
-  }, [Icon]);
+  }, [icon]);
 
   // Rotation animation
   useEffect(() => {
@@ -70,7 +70,7 @@ export default function GradientIcon({
   return (
     <>
       <div ref={extractorRef} className="hidden">
-        <Icon />
+        <icon />
       </div>
 
       <div
