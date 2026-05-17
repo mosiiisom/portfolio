@@ -22,9 +22,9 @@ import {
   SiDocker,
   SiGit,
 } from "react-icons/si";
-import TechStackTitle from "./TechStackTitle";
-import TechCard from "./TechCard";
 import { Technology } from "@/lib/types";
+import TechCard from "./TechCard";
+import TechStackTitle from "./ui/TechStackTitle";
 
 const technologies : Technology[] = [
   // Core Modern Stack
