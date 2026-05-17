@@ -1,91 +1,169 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { 
+  useState, 
+  useEffect, 
+  useRef, 
+  ElementType,
+  useCallback,
+  MouseEvent,
+  ComponentPropsWithoutRef
+} from 'react';
 
-interface ScrambleTextProps {
+type ScrambleTextProps<T extends ElementType = 'span'> = {
+  as?: T;
   text: string;
   className?: string;
   delay?: number;
   scrambleSpeed?: number;
-  revealSpeed?: number;
+
+  // Auto Repeat
+  repeat?: boolean;
+  repeatDelay?: number;
+  repeatDelayMin?: number;
+  repeatDelayMax?: number;
+
+  // Target specific characters by index (e.g. [0] for first letter)
+  repeatIndices?: number[];
+
   chars?: string;
-  onHover?: boolean; // Trigger scramble on hover
-}
+  onHover?: boolean;
+} & ComponentPropsWithoutRef<T>;
 
 const CHARS = '!@#$%^&*()_+{}[]|;:,.<>?~abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
-export default function ScrambleText({
+export default function ScrambleText<T extends ElementType = 'span'>({
+  as,
   text,
   className = '',
   delay = 700,
   scrambleSpeed = 50,
-  revealSpeed = 60,
+  repeat = false,
+  repeatDelay = 2500,
+  repeatDelayMin,
+  repeatDelayMax,
+  repeatIndices = [],
   chars = CHARS,
   onHover = true,
-}: ScrambleTextProps) {
-  const [displayText, setDisplayText] = useState('');
-  const [isAnimating, setIsAnimating] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  ...props
+}: ScrambleTextProps<T>) {
 
-  const scramble = (targetText: string, isHover = false) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  const [displayText, setDisplayText] = useState(text);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [prevText, setPrevText] = useState(text);
+
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const repeatTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const Component = (as || 'span') as ElementType;
+
+  // Pattern: Adjusting state when props change during render
+  // This avoids synchronous setState in useEffect and cascading renders
+  if (text !== prevText) {
+    setPrevText(text);
+    setDisplayText('');
+  }
+
+  const getRandomDelay = useCallback(() => {
+    if (repeatDelayMin !== undefined && repeatDelayMax !== undefined) {
+      return Math.floor(Math.random() * (repeatDelayMax - repeatDelayMin + 1)) + repeatDelayMin;
+    }
+    return repeatDelay;
+  }, [repeatDelay, repeatDelayMax, repeatDelayMin]);
+
+  // Main scramble function
+  const scramble = useCallback((isHover = false, onlyIndices?: number[]) => {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     setIsAnimating(true);
-    let current = Array.from(targetText).map(() => chars[Math.floor(Math.random() * chars.length)]);
 
-    let progress = 0;
-    const speed = isHover ? scrambleSpeed * 0.6 : scrambleSpeed; // Faster on hover
+    const targetIndices = onlyIndices && onlyIndices.length > 0 
+      ? onlyIndices 
+      : Array.from({ length: text.length }, (_, i) => i);
+
+    const speed = isHover ? Math.max(20, scrambleSpeed * 0.6) : scrambleSpeed;
+    let ticks = 0;
+    const maxTicks = 12; // How many scramble frames (adjustable)
 
     intervalRef.current = setInterval(() => {
-      progress += 1;
+      ticks++;
 
-      for (let i = 0; i < targetText.length; i++) {
-        if (i < progress) {
-          current[i] = targetText[i]; // Fix character
-        } else {
-          current[i] = chars[Math.floor(Math.random() * chars.length)];
-        }
-      }
+      setDisplayText((current) => {
+        // Use current state if available, fallback to target text so we have the right length
+        const currentArray = Array.from(current || text);
+        
+        targetIndices.forEach((idx) => {
+          if (idx < text.length) {
+            // During animation â random char
+            if (ticks < maxTicks) {
+              currentArray[idx] = chars[Math.floor(Math.random() * chars.length)];
+            } 
+            // Last tick â restore original
+            else {
+              currentArray[idx] = text[idx];
+            }
+          }
+        });
+        return currentArray.join('');
+      });
 
-      setDisplayText(current.join(''));
-
-      if (progress >= targetText.length) {
+      if (ticks >= maxTicks) {
         if (intervalRef.current) clearInterval(intervalRef.current);
-        setDisplayText(targetText);
+        setDisplayText(text);
         setIsAnimating(false);
       }
     }, speed);
-  };
+  }, [text, chars, scrambleSpeed]);
 
-  // Initial load animation
+  // Initial load animation (full text reveal)
   useEffect(() => {
+    // We already handle clearing text in the render block when text changes.
+    // This effect handles the initial mount or text change trigger for animation.
     const timer = setTimeout(() => {
-      scramble(text);
+      scramble(false); // Full initial scramble
     }, delay);
 
-    return () => {
-      clearTimeout(timer);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [text, delay]);
+    return () => clearTimeout(timer);
+  }, [delay, scramble]);
 
-  // Hover effect
-  const handleMouseEnter = () => {
-    if (onHover) {
-      scramble(text, true);
-    }
+  // Auto Repeat
+  useEffect(() => {
+    if (!repeat) return;
+
+    const scheduleRepeat = () => {
+      const nextDelay = getRandomDelay();
+
+      repeatTimeoutRef.current = setTimeout(() => {
+        if (!isAnimating) {
+          scramble(false, repeatIndices);
+        }
+        scheduleRepeat();
+      }, nextDelay);
+    };
+
+    scheduleRepeat();
+
+    return () => {
+      if (repeatTimeoutRef.current) clearTimeout(repeatTimeoutRef.current);
+    };
+  }, [repeat, repeatIndices, isAnimating, scramble, getRandomDelay]);
+
+  const handleMouseEnter = (e: MouseEvent<HTMLElement>) => {
+    if (onHover) scramble(true);
+    props.onMouseEnter?.(e);
   };
 
   return (
-    <span
-      className={`${className} inline-block transition-all duration-75 ${isAnimating ? 'text-[#00ff9f]' : ''}`}
+    <Component
+      id="scramble-text"
+      className={`${className} inline-block transition-all duration-75 ${
+        isAnimating ? 'text-accent' : ''
+      }`}
       onMouseEnter={handleMouseEnter}
-      style={{ minWidth: `${text.length}ch` }} // Prevent layout shift
+      style={{ minWidth: `${text.length * 0.95}ch` }}
+      {...props}
     >
-      {displayText || text}
-    </span>
+      {displayText}
+    </Component>
   );
 }
