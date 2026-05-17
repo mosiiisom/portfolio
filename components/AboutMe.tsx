@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import ScrambleText from "./ScrambleText";
+import ScrambleText from "./ui/ScrambleText";
 
 export default function AboutMe() {
   const sectionRef = useRef<HTMLDivElement>(null);

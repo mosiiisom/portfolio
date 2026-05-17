@@ -1,5 +1,5 @@
 "use client";
-import ScrambleText from "./ScrambleText";
+import ScrambleText from "./ui/ScrambleText";
 import {
   motion,
   useMotionValue,

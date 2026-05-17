@@ -1,5 +1,5 @@
-import NavbarHireMeBtn from "./navbar-hireme-btn";
-import ScrambleText from "./ScrambleText";
+import NavbarHireMeBtn from "./ui/navbar-hireme-btn";
+import ScrambleText from "./ui/ScrambleText";
 
 export default function Navbar() {
   return (
