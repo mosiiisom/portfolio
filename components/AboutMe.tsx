@@ -20,11 +20,11 @@ export default function AboutMe() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative min-h-screen bg-primary overflow-hidden flex flex-col items-stretch"
+      className="relative min-h-screen bg-background overflow-hidden flex flex-col items-stretch"
     >
       <div className="grow w-full grid grid-cols-24 min-h-full px-4 justify-end">
         
-        <div className="col-span-24 md:col-span-10 min-h-screen gap-4">
+        <div className="col-span-24 md:col-span-10 min-h-screen gap-4" id="mosi-cursor">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -44,8 +44,8 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 1.2 }}
-              className="absolute font-bold  text-[clamp(32px,60vw,15rem)] text-white top-[36%] left-1/2 -translate-x-1/2 translate-x-25 z-40 ">
-              I
+              className="absolute font-bold  text-[clamp(32px,60vw,15rem)] text-white top-[36%] left-1/2 -translate-x-1/2 translate-x-25 z-40">
+              <ScrambleText text="I" as="span" onHover={false}  repeat={true} repeatDelayMin={6000} repeatDelayMax={12000}/>
             </motion.span>
             <motion.span
             initial={{ opacity: 0, y: 60, scale: 0.8 }}
@@ -58,13 +58,13 @@ export default function AboutMe() {
             <motion.img
               src="/images/mosi.png"
               alt="Mostafa Dehghani - Mosi"
-              className="absolute h-[70%] left-1/2 -translate-x-1/2 bottom-0 z-30 drop-shadow-2xl drop-shadow-black"
+              className="absolute h-[70%] left-1/2 -translate-x-1/2 bottom-0 z-30 drop-shadow-2xl drop-shadow-background"
               initial={{ opacity: 0, y: 80, scale: 0.85 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             />
-            <div className="bg-gradient-to-b to-primary w-full h-16 absolute bottom-0 z-30" ></div>
+            <div className="bg-gradient-to-b to-background w-full h-16 absolute bottom-0 z-30" ></div>
           </motion.div>
         </div>
 

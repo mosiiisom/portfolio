@@ -1,6 +1,11 @@
-"use client"
+"use client";
 import ScrambleText from "./ScrambleText";
-import { motion, useMotionValue, useTransform, cubicBezier } from "motion/react";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  cubicBezier,
+} from "motion/react";
 import { useEffect, useRef } from "react";
 
 const containerVariants = {
@@ -8,7 +13,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.18,     // Beautiful stagger timing
+      staggerChildren: 0.18, // Beautiful stagger timing
       delayChildren: 0.1,
     },
   },
@@ -21,7 +26,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: cubicBezier(0.25, 0.1, 0.25, 1),   // ← This is the correct way now
+      ease: cubicBezier(0.25, 0.1, 0.25, 1), // ← This is the correct way now
     },
   },
 };
@@ -39,8 +44,8 @@ const buttonVariants = {
 };
 
 export default function HeroSection() {
-    const containerRef = useRef<HTMLDivElement>(null);
-  
+  const containerRef = useRef<HTMLDivElement>(null);
+
   // Mouse position values
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -58,7 +63,7 @@ export default function HeroSection() {
       if (!containerRef.current) return;
 
       const rect = containerRef.current.getBoundingClientRect();
-      
+
       // Normalized values (-1 to 1)
       const normalizedX = ((e.clientX - rect.left) / rect.width - 0.5) * 1.6;
       const normalizedY = ((e.clientY - rect.top) / rect.height - 0.5) * 1.6;
@@ -74,9 +79,12 @@ export default function HeroSection() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY, dotX, dotY]);
-  
+
   return (
-    <div ref={containerRef} className="relative min-h-screen w-full overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative min-h-screen w-full overflow-hidden"
+    >
       <motion.video
         autoPlay
         muted
@@ -92,7 +100,7 @@ export default function HeroSection() {
         <source src="/videos/hero-loop.mp4" type="video/mp4" />
       </motion.video>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-80% to-primary" />
+      <div className="absolute inset-0 bg-gradient-to-b from-80% to-background" />
 
       {/* <motion.div
         style={{
@@ -110,35 +118,26 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-6">
         <div className="min-h-screen w-full flex items-center">
           <div className="grid grid-cols-24 gap-8 w-full">
-            <motion.div 
+            <motion.div
               className="col-span-12 md:col-span-15 flex flex-col justify-center items-start tracking-[-0.02em]"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
               {/* H5 */}
-              <motion.h5 
-                className="text-white/86"
-                variants={itemVariants}
-              >
-                "Hi, I’m{" "}
-                <ScrambleText
-                  text="MOSI >_"
-                  className="text-[#74f0ff] mosi"
-                />{" "}
-                — your partner in building what’s next."
+              <motion.h5 className="text-white/86" variants={itemVariants}>
+                &quot;Hi, I&apos;m{" "}
+                <ScrambleText text="MOSI >_" className="text-accent mosi" />{" "}
+                — your partner in building what&apos;s next.&quot;
               </motion.h5>
 
               {/* H1 */}
-              <motion.h1 
-                className="text-white mt-3"
-                variants={itemVariants}
-              >
-                Turning Complex Ideas into Scalable Digital Reality.
+              <motion.h1 className="text-white mt-3" variants={itemVariants}>
+                Turning <ScrambleText text="Complex" as="span" repeat={true} className="text-center" repeatIndices={[0]} repeatDelayMin={1500} repeatDelayMax={4000} /> Ideas into Scalable Digital Reality.
               </motion.h1>
 
               {/* Paragraph */}
-              <motion.p 
+              <motion.p
                 className="text-white/86 mt-3 text-[1rem]"
                 variants={itemVariants}
               >
@@ -148,7 +147,7 @@ export default function HeroSection() {
               </motion.p>
 
               {/* Buttons */}
-              <motion.div 
+              <motion.div
                 className="flex gap-4 mt-8"
                 variants={containerVariants}
                 initial="hidden"
@@ -156,7 +155,7 @@ export default function HeroSection() {
               >
                 <motion.a
                   href="#projects"
-                  className="px-8 py-4 bg-[#74f0ff] text-black font-semibold rounded-xl hover:bg-white transition-all duration-300"
+                  className="px-8 py-4 h-fit text-[1em] border-2 border-white/0 font-semibold bg-accent text-black  rounded-xl hover:bg-foreground hover:text-dark-accent transition-all duration-300"
                   variants={buttonVariants}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
@@ -166,7 +165,7 @@ export default function HeroSection() {
 
                 <motion.a
                   href="#contact"
-                  className="px-8 py-4 border-2 border-white/70 text-white font-medium rounded-xl hover:bg-white/10 transition-all"
+                  className="px-8 py-4 text-[1em] border-2 h-fit border-white/70 text-white font-medium rounded-xl hover:bg-white/10 transition-all"
                   variants={buttonVariants}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
