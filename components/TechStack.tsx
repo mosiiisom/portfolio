@@ -1,31 +1,32 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from "react";
+import { motion } from 'framer-motion';
 import {
   SiNextdotjs,
   SiReact,
   SiTypescript,
   SiTailwindcss,
-  SiFramer,
+  // SiFramer,
   SiPython,
   SiPhp,
   SiDjango,
   SiLaravel,
   SiWordpress,
   SiElectron,
-  SiGooglechrome, // for Chrome Extension
-  SiTelegram,
-  SiLinux,
-  SiGithubactions, // for Git CI/CD
+  // SiGooglechrome,
+  // SiTelegram,
+  // SiLinux,
+  SiGithubactions,
   SiVercel,
   SiDocker,
   SiGit,
 } from "react-icons/si";
 import TechStackTitle from "./TechStackTitle";
 import TechCard from "./TechCard";
+import { Technology } from "@/lib/types";
 
-const technologies = [
+const technologies : Technology[] = [
   // Core Modern Stack
   {
     name: "Next.js",
@@ -183,31 +184,26 @@ const technologies = [
   },
 ];
 
-const categories = [
-  { label: "All", value: "all" },
-  { label: "Frontend", value: "frontend" },
-  { label: "Backend", value: "backend" },
-  { label: "Tools", value: "tools" },
-];
+// const categories = [
+//   { label: "All", value: "all" },
+//   { label: "Frontend", value: "frontend" },
+//   { label: "Backend", value: "backend" },
+//   { label: "Tools", value: "tools" },
+// ];
 
 export default function TechStack() {
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
   return (
-    <section id="tech" ref={containerRef} className="py-10 bg-primary relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#1a1a1a_1px,transparent_1px),linear-gradient(to_bottom,#1a1a1a_1px,transparent_1px)] bg-[size:50px_50px] opacity-30 z-0" />
+    <section id="tech" ref={containerRef} className="py-10 bg-background relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-zinc-900)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-zinc-900)_1px,transparent_1px)] bg-[size:50px_50px] opacity-30 z-0" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 ">
         <TechStackTitle />   
 
           <motion.div
           layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative z-10"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative z-10 hover-target"
         >
           {technologies.map((tech, index) => (
             <TechCard key={tech.name} tech={tech} index={index} />

@@ -2,9 +2,10 @@
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { motion } from "framer-motion";
 import GradientIcon from "./ui/GradientIcon";
+import { Technology } from "@/lib/types";
 
 interface TechCardProps {
-  tech: any;
+  tech: Technology;
   index: number;
 }
 

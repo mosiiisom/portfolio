@@ -1,7 +1,7 @@
 // components/ui/GradientIcon.tsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useId,useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface GradientIconProps {
@@ -28,7 +28,7 @@ export default function GradientIcon({
 }: GradientIconProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const extractorRef = useRef<HTMLDivElement>(null);
-  const maskId = `mask-${Math.random().toString(36).slice(2)}`;
+  const maskId = useId();
   const [pathData, setPathData] = useState<string>("");
 
   // Auto-extract path
