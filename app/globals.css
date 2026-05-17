@@ -2,11 +2,12 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
   --primary: oklch(0.205 0 0);
-  --accent: oklch(0.97 0 0);
+  /* --accent: oklch(0.88 0.21 157.33); */
+  /* --dark-accent: oklch(64.42% 0.15154 157.699); */
+  --accent: oklch(0.876 0.1102 206.21);
+  --dark-accent: oklch(0.6442 0.1102 206.21);
   --background: oklch(0.145 0 0);
   --foreground: oklch(1 0 0);
   --card: oklch(1 0 0);
@@ -45,6 +46,7 @@
 
   --color-primary: var(--primary);
   --color-accent: var(--accent);
+  --color-dark-accent: var(--dark-accent);
 
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
@@ -102,12 +104,12 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --primary: #000;
     --accent: #00ff9f;
   }
-}
+} */
 
 @layer base {
   html {
@@ -116,19 +118,21 @@
   }
 
   section {
-    scroll-margin-top: 80px; /* compensates for fixed navbar */
+    scroll-margin-top: 80px;
   }
 
   body {
     font-size: var(--font-size-base);
-    /* line-height: 1.5;
-    font-weight: 400;
-    letter-spacing: 0; */
     background: var(--background);
     color: var(--foreground);
     @apply bg-background text-foreground;
   }
 
+  body::selection {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+
+  }
   h1, .h1 { 
     @apply text-[3.815rem] tracking-tight font-bold leading-[115%];
   }
@@ -175,16 +179,8 @@
     @apply border-border outline-ring/50;
   }
 }
-/* 
-body {
-  background: var(--background);
-  color: var(--foreground);
 
-  font-size: var(--font-size-base);
-  line-height: 1.5;
-  font-weight: 400;
-  letter-spacing: 0;
-} */
+
 nav .hire-me-btn {
   @apply transition-all duration-100 cursor-crosshair;
 
@@ -283,4 +279,38 @@ nav .hire-me-btn:hover {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.hover-target {
+  cursor: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 33 36' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 35.57v-5.47h5.47v-2.74h5.47v-2.74h5.47v-2.74h5.47v-2.74h5.47v-2.74h-5.47v-2.74h-5.47v-2.74h-5.47v-2.74h-5.47v-2.74H0V0h5.47v2.74h5.47v2.74h5.47v2.74h5.47v2.74h5.47v2.74h5.47v8.21h-5.47v2.74h-5.47v2.74h-5.47v2.74h-5.47v2.74h-5.47v2.74H0z' fill='%23fff' stroke='%23000' stroke-width='1.8'/%3E%3C/svg%3E") 24 24, pointer;
+}
+
+.mosi-cursor {
+  cursor: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 87.55 19.15'%3E%3Cpath d='M0,17.33V0h1.82v1.82h.91v2.74h-.91v12.77H0ZM5.47,14.59v-1.82h-.91v-2.74h-.91v-2.74h-.91v-2.74h1.82v2.74h.91v2.74h.91v2.74h1.82v-2.74h.91v-2.74h.91v-2.74h1.82v2.74h-.91v2.74h-.91v2.74h-.91v1.82h-.91v1.82h-1.82v-1.82h-.91ZM12.77,17.33V4.56h-.91V1.82h.91V0h1.82v17.33h-1.82Z' fill='%23ffffff' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M19.15,15.5v-1.82h-.91v-1.82h-.91v-6.38h.91v-1.82h.91v-1.82h.91v-.91h1.82v-.91h5.47v.91h1.82v.91h.91v1.82h.91v1.82h.91v6.38h-.91v1.82h-.91v1.82h-.91v.91h-1.82v.91h-5.47v-.91h-1.82v-.91h-.91ZM29.18,5.47v-1.82h-.91v-.91h-.91v-.91h-5.47v.91h-.91v.91h-.91v1.82h-.91v6.38h.91v1.82h.91v.91h.91v.91h5.47v-.91h.91v-.91h.91v-1.82h.91v-6.38h-.91Z' fill='%23ffffff' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M35.57,16.42v-1.82h-.91v-2.74h1.82v2.74h.91v.91h6.38v-.91h.91v-3.65h-1.82v-.91h-2.74v-.91h-2.74v-.91h-1.82v-.91h-.91V2.74h.91V.91h1.82v-.91h5.47v.91h1.82v.91h.91v1.82h.91v1.82h-1.82v-1.82h-.91v-.91h-.91v-.91h-5.47v.91h-.91v3.65h.91v.91h3.65v.91h2.74v.91h1.82v1.82h.91v3.65h-.91v1.82h-1.82v.91h-6.38v-.91h-1.82Z' fill='%23ffffff' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M50.16,17.33V0h1.82v17.33h-1.82Z' fill='%23ffffff' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M63.84,16.42v-1.82h1.82v-.91h1.82v-.91h1.82v-.91h1.82v-.91h1.82v-.91h-1.82v-.91h-1.82v-.91h-1.82v-.91h-1.82v-.91h-1.82v-1.82h1.82v.91h1.82v.91h1.82v.91h1.82v.91h1.82v.91h1.82v2.74h-1.82v.91h-1.82v.91h-1.82v.91h-1.82v.91h-1.82v.91h-1.82Z' fill='%23ffffff' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M76.61,19.15v-1.82h10.94v1.82h-10.94Z' fill='%23ffffff' stroke='%23000000' stroke-width='0'/%3E%3C/svg%3E") 75 10, pointer;
+}
+
+.mosi-cursor-black {
+  cursor: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 87.55 19.15'%3E%3Cpath d='M0,17.33V0h1.82v1.82h.91v2.74h-.91v12.77H0ZM5.47,14.59v-1.82h-.91v-2.74h-.91v-2.74h-.91v-2.74h1.82v2.74h.91v2.74h.91v2.74h1.82v-2.74h.91v-2.74h.91v-2.74h1.82v2.74h-.91v2.74h-.91v2.74h-.91v1.82h-.91v1.82h-1.82v-1.82h-.91ZM12.77,17.33V4.56h-.91V1.82h.91V0h1.82v17.33h-1.82Z' fill='%23000000' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M19.15,15.5v-1.82h-.91v-1.82h-.91v-6.38h.91v-1.82h.91v-1.82h.91v-.91h1.82v-.91h5.47v.91h1.82v.91h.91v1.82h.91v1.82h.91v6.38h-.91v1.82h-.91v1.82h-.91v.91h-1.82v.91h-5.47v-.91h-1.82v-.91h-.91ZM29.18,5.47v-1.82h-.91v-.91h-.91v-.91h-5.47v.91h-.91v.91h-.91v1.82h-.91v6.38h.91v1.82h.91v.91h.91v.91h5.47v-.91h.91v-.91h.91v-1.82h.91v-6.38h-.91Z' fill='%23000000' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M35.57,16.42v-1.82h-.91v-2.74h1.82v2.74h.91v.91h6.38v-.91h.91v-3.65h-1.82v-.91h-2.74v-.91h-2.74v-.91h-1.82v-.91h-.91V2.74h.91V.91h1.82v-.91h5.47v.91h1.82v.91h.91v1.82h.91v1.82h-1.82v-1.82h-.91v-.91h-.91v-.91h-5.47v.91h-.91v3.65h.91v.91h3.65v.91h2.74v.91h1.82v1.82h.91v3.65h-.91v1.82h-1.82v.91h-6.38v-.91h-1.82Z' fill='%23000000' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M50.16,17.33V0h1.82v17.33h-1.82Z' fill='%23000000' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M63.84,16.42v-1.82h1.82v-.91h1.82v-.91h1.82v-.91h1.82v-.91h1.82v-.91h-1.82v-.91h-1.82v-.91h-1.82v-.91h-1.82v-.91h-1.82v-1.82h1.82v.91h1.82v.91h1.82v.91h1.82v.91h1.82v.91h1.82v2.74h-1.82v.91h-1.82v.91h-1.82v.91h-1.82v.91h-1.82v.91h-1.82Z' fill='%23000000' stroke='%23000000' stroke-width='0'/%3E%3Cpath d='M76.61,19.15v-1.82h10.94v1.82h-10.94Z' fill='%23000000' stroke='%23000000' stroke-width='0'/%3E%3C/svg%3E") 75 10, pointer;
+}
+
+
+.mosi-custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 999999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);   /* Center the cursor */
+  display: none;
+}
+
+@media (hover: hover) {
+  .mosi-custom-cursor {
+    display: block;
+  }
+
+  .mosi-cursor-area {
+    cursor: none !important;
+  }
 }
