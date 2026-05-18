@@ -20,7 +20,7 @@ export default function AboutMe() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative min-h-screen bg-background overflow-hidden flex flex-col items-stretch"
+      className="relative mt-[100vh] min-h-screen bg-linear-to-b to-background to-10% overflow-hidden flex flex-col items-stretch"
     >
       <div className="grow w-full grid grid-cols-24 min-h-full px-4 justify-end">
         
@@ -72,8 +72,8 @@ export default function AboutMe() {
         <div className="col-span-24 md:col-span-14 flex flex-col gap-8">
           <div className="min-h-1/3 flex flex-col items-end pb-4 justify-end px-12">
             <div className="flex flex-col gap-2 items-start w-[150px]">
-              <p><ScrambleText text="> GitHub" className="font-pixel-square" /></p>
-              <p><ScrambleText text="> Linkdin" className="font-pixel-square" /></p>
+              <a href="https://github.com/mosiiisom" target="_blank" rel="noopener noreferrer"><ScrambleText text="> GitHub" className="font-pixel-square" /></a>
+              <a href="https://www.linkedin.com/in/mosiiisom" target="_blank" rel="noopener noreferrer"><ScrambleText text="> Linkdin" className="font-pixel-square" /></a>
             </div>
           </div>
           <div className="flex flex-col overflow-hidden pb-8">

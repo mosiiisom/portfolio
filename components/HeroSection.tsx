@@ -83,7 +83,7 @@ export default function HeroSection() {
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen w-full overflow-hidden"
+      className="fixed top-0 right-0 min-h-screen w-full overflow-hidden"
     >
       <motion.video
         autoPlay

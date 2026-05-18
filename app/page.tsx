@@ -6,7 +6,7 @@ import TechStack from "@/components/TechStack";
 export default function Home() {
 
   return (
-    <main>
+    <main className="relative overflow-hidden">
       <Navbar />
       <HeroSection />
 
