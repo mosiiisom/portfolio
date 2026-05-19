@@ -14,6 +14,7 @@ type ScrambleTextProps<T extends ElementType = 'span'> = {
   as?: T;
   text: string;
   className?: string;
+  animatedClassName?: string;
   delay?: number;
   scrambleSpeed?: number;
 
@@ -28,6 +29,7 @@ type ScrambleTextProps<T extends ElementType = 'span'> = {
 
   chars?: string;
   onHover?: boolean;
+  maxTicks?: number;
 } & ComponentPropsWithoutRef<T>;
 
 const CHARS = '!@#$%^&*()_+{}[]|;:,.<>?~abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -36,6 +38,7 @@ export default function ScrambleText<T extends ElementType = 'span'>({
   as,
   text,
   className = '',
+  animatedClassName='text-accent',
   delay = 700,
   scrambleSpeed = 50,
   repeat = false,
@@ -45,6 +48,7 @@ export default function ScrambleText<T extends ElementType = 'span'>({
   repeatIndices = [],
   chars = CHARS,
   onHover = true,
+  maxTicks = 12,
   ...props
 }: ScrambleTextProps<T>) {
 
@@ -83,7 +87,6 @@ export default function ScrambleText<T extends ElementType = 'span'>({
 
     const speed = isHover ? Math.max(20, scrambleSpeed * 0.6) : scrambleSpeed;
     let ticks = 0;
-    const maxTicks = 12; // How many scramble frames (adjustable)
 
     intervalRef.current = setInterval(() => {
       ticks++;
@@ -157,7 +160,7 @@ export default function ScrambleText<T extends ElementType = 'span'>({
     <Component
       id="scramble-text"
       className={`${className} inline-block transition-all duration-75 ${
-        isAnimating ? 'text-accent' : ''
+        isAnimating ? animatedClassName : ''
       }`}
       onMouseEnter={handleMouseEnter}
       style={{ minWidth: `${text.length * 0.95}ch` }}
