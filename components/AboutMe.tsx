@@ -20,7 +20,7 @@ export default function AboutMe() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative mt-[100vh] min-h-screen bg-linear-to-b to-background to-10% overflow-hidden flex flex-col items-stretch"
+      className="relative mt-[100vh] min-h-screen bg-background  overflow-hidden flex flex-col items-stretch"
     >
       <div className="grow w-full grid grid-cols-24 min-h-full px-4 justify-end">
         
