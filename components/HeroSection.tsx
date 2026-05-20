@@ -83,7 +83,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
   return (
     <div
       ref={containerRef}
-      className="fixed top-0 right-0 min-h-screen w-full overflow-hidden"
+      id="hero" className="fixed top-0 right-0 min-h-screen w-full overflow-hidden"
     >
       <motion.video
         autoPlay
@@ -91,7 +91,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
         loop
         playsInline
         style={{ x, y }}
-        className="absolute inset-0 scale-[103%] w-full h-full md:h-auto object-cover"
+        className="absolute inset-0 scale-[100%] right-0 md:scale-[103%] w-full h-full md:h-auto object-cover"
         transition={{ type: "inertia", stiffness: 10, damping: 30 }}
       >
         {/* Best quality + smallest size first */}
@@ -100,7 +100,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
         <source src="/videos/hero-loop.mp4" type="video/mp4" />
       </motion.video>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-80% to-background" />
+      <div className="absolute inset-0 bg-background/40 md:bg-gradient-to-b md:from-80% md:to-background" />
 
       {/* <motion.div
         style={{
@@ -132,7 +132,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
               </motion.h5>
 
               {/* H1 */}
-              <motion.h1 className="text-white mt-3" variants={itemVariants}>
+              <motion.h1 className="text-white mt-3 sm:text-3xl" variants={itemVariants}>
                 Turning <ScrambleText text="Complex" as="span" repeat={true} className="text-center" repeatIndices={[0]} repeatDelayMin={1500} repeatDelayMax={4000} /> Ideas into Scalable Digital Reality.
               </motion.h1>
 

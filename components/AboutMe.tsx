@@ -21,11 +21,11 @@ export default function AboutMe() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative mt-[100vh] min-h-screen bg-background  overflow-hidden flex flex-col items-stretch"
+      className="relative mt-[100vh] min-h-screen bg-background overflow-hidden flex flex-col md:items-stretch"
     >
       <div className="grow w-full grid grid-cols-24 min-h-full px-4 justify-end">
         
-        <div className="col-span-24 md:col-span-10 min-h-screen gap-4" id="mosi-cursor">
+        <div className="col-span-24 md:col-span-10 md:min-h-screen h-[550px] gap-4" id="mosi-cursor">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -37,7 +37,7 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.7 }}
-            className="absolute font-bold  text-[clamp(32px,50vw,12rem)] text-white top-[14%] left-1/2 -translate-x-1/2 translate-x-[-60%]">
+            className="absolute font-bold text-[clamp(32px,30vw,12rem)] md:text-[clamp(32px,50vw,12rem)] text-white top-[0%] md:top-[14%] left-1/2 -translate-x-1/2 translate-x-[-60%]">
               WHO
             </motion.span>
             <motion.span
@@ -45,7 +45,7 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 1.2 }}
-              className="absolute font-bold  text-[clamp(32px,60vw,15rem)] text-white top-[36%] left-1/2 -translate-x-1/2 translate-x-25 z-40">
+              className="absolute font-bold text-[clamp(32px,40vw,15rem)]  md:text-[clamp(32px,60vw,15rem)] text-white top-[25%]  md:top-[35%] left-1/2 -translate-x-1/2 translate-x-25 z-40">
               <ScrambleText text="I" as="span" onHover={false}  repeat={true} repeatDelayMin={6000} repeatDelayMax={12000}/>
             </motion.span>
             <motion.span
@@ -53,13 +53,13 @@ export default function AboutMe() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 1.7 }}
-              className="absolute font-bold text-[clamp(32px,50vw,12rem)] text-white top-[58%] -translate-x-1/2 translate-x-[-35%] z-40 drop-shadow-lg drop-shadow-black">
+              className="absolute font-bold text-[clamp(32px,32vw,12rem)] md:text-[clamp(32px,50vw,12rem)] text-white top-[55%] md:top-[58%] -translate-x-1/2 translate-x-[-35%] z-40 drop-shadow-lg drop-shadow-black">
               AM
             </motion.span>
             <motion.img
               src="/images/mosi.png"
               alt="Mostafa Dehghani - Mosi"
-              className="absolute h-[70%] left-1/2 -translate-x-1/2 bottom-0 z-30 drop-shadow-2xl drop-shadow-background"
+              className="absolute h-[83%] md:h-[70%] left-1/2 -translate-x-1/2 bottom-0 z-30 drop-shadow-2xl drop-shadow-background"
               initial={{ opacity: 0, y: 80, scale: 0.85 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
@@ -71,14 +71,14 @@ export default function AboutMe() {
 
         {/* Text Area */}
         <div className="col-span-24 md:col-span-14 flex flex-col gap-8">
-          <div className="min-h-1/3 flex flex-col items-end pb-4 justify-end px-12">
+          <div className="hidden md:flex min-h-1/3 flex-col items-end pb-4 justify-end px-12">
             <div className="flex flex-col gap-2 items-start w-[150px]">
               <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer"><ScrambleText text="> GitHub" className="font-pixel-square" /></a>
               <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer"><ScrambleText text="> Linkdin" className="font-pixel-square" /></a>
             </div>
           </div>
           <div className="flex flex-col overflow-hidden pb-8">
-            <p className="about-text text-[clamp(16px,1.8vw,48px)] tracking-[-0.02em] leading-[1.5] text-white">
+            <p className="about-text text-[clamp(16px,1.8vw,48px)] tracking-[-0.02em] leading-[1.5] text-white hidden md:block">
               
               <motion.span className="word word1" style={{x:goLeft}}>My journey</motion.span>
               <motion.span className="word">started in</motion.span>
@@ -113,6 +113,10 @@ export default function AboutMe() {
               <motion.span className="word word2" style={{x:goRight}}>seeking new challenges</motion.span>
               <motion.span className="word">and exciting opportunities.</motion.span>
 
+            </p>
+            <p className="about-text-sm md:hidden text-[1.5em] tracking-[-0.02em] leading-[1.7] text-white pb-4 mt-18">
+              My journey started in my teens with game modding and endless hourson a noisy dial-up connection.
+That curiosity led me to freelance PHP development and building custom WordPress themes and plugins. Since 2018, I’ve been building trading tools, market analytics, cold wallets, and automated trading systems for hundreds of crypto traders. Now, I’m a passionate full-stack developer seeking new challengesand exciting opportunities. 
             </p>
           </div>
         </div>

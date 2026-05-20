@@ -58,7 +58,7 @@ export default function Experiences() {
 
       <div className="relative w-full">
         {/* The scrolling SVG line */}
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2">
+        <div className="absolute hidden md:block left-8 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2">
           <svg className="w-full h-full" preserveAspectRatio="none">
             {/* Background line */}
             <line
@@ -83,7 +83,7 @@ export default function Experiences() {
         </div>
 
         {/* Experience Items */}
-        <div className="relative z-10 flex flex-col gap-24">
+        <div className="relative z-10 flex flex-col gap-14">
           {EXPERIENCES.map((exp, index) => {
             const isEven = index % 2 === 0;
 
@@ -99,9 +99,9 @@ export default function Experiences() {
                 } relative`}
               >
                 {/* Node dot on the timeline */}
-                <div className="absolute left-8 md:left-1/2 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-950 border-2 border-white z-20 mt-2" />
+                <div className="absolute hidden md:block left-8 md:left-1/2 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-950 border-2 border-white z-20 mt-2" />
 
-                <div className={`ml-20 md:ml-0 w-full md:w-[45%] ${isEven ? "md:pr-16" : "md:pl-16"}`}>
+                <div className={`ml-0 md:ml-0 w-full md:w-[45%] ${isEven ? "md:pr-16" : "md:pl-16"}`}>
                   <div className="group relative bg-zinc-900/20 border border-white/5 backdrop-blur-md p-8 rounded-3xl hover:bg-zinc-900/50 transition-colors duration-500">
                     {/* Hover Gradient Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
