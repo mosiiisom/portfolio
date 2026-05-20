@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/site";
+
 export default function NavbarHireMeBtn() {
   return (
     <div className="relative w-40 h-10  flex flex-col items-center justify-center hire-me-btn pixel-font">
@@ -39,7 +41,7 @@ export default function NavbarHireMeBtn() {
           </svg>
         </div>
       </div>
-      <a href="https://app.cal.com/thisismosi" target="_blank" rel="noopener noreferrer"  className="relative w-full flex justify-center overflow-hidden text-content">
+      <a href={siteConfig.links.cal} target="_blank" rel="noopener noreferrer"  className="relative w-full flex justify-center overflow-hidden text-content">
         <p className="default-text">Hire Me !</p>
         <p className="absolute translate-y-[100%]">schedule a call !</p>
       </a>
