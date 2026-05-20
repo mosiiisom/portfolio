@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 interface PreloaderProps {
   /** Duration of the loading animation in seconds */
   duration?: number;
+  /** Callback fired when the loader has fully finished and is about to disappear */
+  onComplete?: () => void;
 }
 
-export default function PercentageLoader({ duration = 1.5 }: PreloaderProps) {
+export default function PercentageLoader({ duration = 1.5, onComplete }: PreloaderProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -37,6 +39,10 @@ export default function PercentageLoader({ duration = 1.5 }: PreloaderProps) {
         setTimeout(() => {
           setIsLoading(false);
           document.body.style.overflow = "auto";
+          if (onComplete) {
+            // Wait for the exit animation to mostly finish before triggering complete
+            setTimeout(onComplete, 800);
+          }
         }, 400); 
       }
     };

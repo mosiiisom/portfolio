@@ -43,7 +43,7 @@ const buttonVariants = {
   },
 };
 
-export default function HeroSection() {
+export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Mouse position values
@@ -122,7 +122,7 @@ export default function HeroSection() {
               className="col-span-12 md:col-span-15 flex flex-col justify-center items-start tracking-[-0.02em]"
               variants={containerVariants}
               initial="hidden"
-              animate="visible"
+              animate={isReady ? "visible" : "hidden"}
             >
               {/* H5 */}
               <motion.h5 className="text-white/86" variants={itemVariants}>
@@ -151,7 +151,7 @@ export default function HeroSection() {
                 className="flex gap-4 mt-8"
                 variants={containerVariants}
                 initial="hidden"
-                animate="visible"
+                animate={isReady ? "visible" : "hidden"}
               >
                 <motion.a
                   href="#projects"
