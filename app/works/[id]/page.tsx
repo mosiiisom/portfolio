@@ -44,7 +44,7 @@ const markdownComponents: Components = {
       {...props} 
     />
   ),
-  code: ({ node, inline, className, children, ...props }) => {
+  code: ({ node, inline, className, children, ...props }: any) => {
     return inline ? (
       <code 
         className="bg-white/10 px-1.5 py-0.5 rounded font-mono text-sm text-[#72ebfa]" 

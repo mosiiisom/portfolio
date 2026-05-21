@@ -30,7 +30,7 @@ export async function sendEmail(formData: FormData) {
     }
 
     return { success: true };
-  } catch (error: any) {
-    return { error: error.message || "An error occurred while sending the email." };
+  } catch (error: unknown) {
+    return { error: error instanceof Error ? error.message : "An error occurred while sending the email." };
   }
 }

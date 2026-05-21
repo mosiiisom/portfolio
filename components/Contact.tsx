@@ -37,7 +37,7 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-[clamp(32px,5vw,64px)] font-bold tracking-tight text-white mb-4">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
             Feel free to reach out for collaborations or just a friendly hello.
@@ -56,7 +56,7 @@ export default function Contact() {
             <div>
               <h3 className="text-2xl font-medium text-white mb-3">Get in touch</h3>
               <p className="text-zinc-400 leading-relaxed font-light">
-                I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                I&apos;m currently open to new opportunities. Whether you have a question or just want to say&nbsp;hi, I&apos;ll try my best to get back to you!
               </p>
             </div>
 
@@ -77,7 +77,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">LINKEDIN</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">Let's connect</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">Let&apos;s connect</p>
                 </div>
               </a>
 
@@ -155,7 +155,7 @@ export default function Contact() {
               {status === "success" && (
                 <div className="flex items-center gap-2 text-emerald-400 bg-emerald-400/10 p-3 rounded-xl text-sm">
                   <CheckCircle2 className="w-4 h-4" />
-                  <p>Message sent successfully! I'll get back to you soon.</p>
+                  <p>Message sent successfully! I&apos;ll get back to you soon.</p>
                 </div>
               )}
 
