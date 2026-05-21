@@ -9,6 +9,7 @@ export async function sendEmail(formData: FormData) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
+  const senderEmail = formData.get('senderEmail' as string);
 
   if (!name || !email || !message) {
     return { error: "Please fill out all fields." };
@@ -16,7 +17,7 @@ export async function sendEmail(formData: FormData) {
 
   try {
     const data = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
+      from: `Portfolio <${senderEmail}>`,
       to: siteConfig.email,
       subject: `New message from ${name} on your portfolio`,
       replyTo: email,

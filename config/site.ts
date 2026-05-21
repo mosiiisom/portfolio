@@ -1,6 +1,8 @@
 export const siteConfig = {
   name: "Mosi Portfolio",
-  email: "hello@mosi.my",
+  email: "hi@mosi.my",
+  // this is just for the contact form, you can change it if you want
+  senderEmail: "no-replay@contact.mosi.my",
   links: {
     github: "https://github.com/mosiiisom",
     linkedin: "https://www.linkedin.com/in/mosiiisom/",
