@@ -17,7 +17,7 @@ export async function sendEmail(formData: FormData) {
 
   try {
     const data = await resend.emails.send({
-      from: `Portfolio <${senderEmail}>`,
+      from: `noreplay <${senderEmail}>`,
       to: siteConfig.email,
       subject: `New message from ${name} on your portfolio`,
       replyTo: email,
