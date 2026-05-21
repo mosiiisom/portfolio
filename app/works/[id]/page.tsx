@@ -154,7 +154,13 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         {/* Content Grid */}
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
           {/* Main Content */}
-          <div className="md:col-span-8">
+          <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+
+           className="md:col-span-8">
             <h2 className="text-3xl font-semibold tracking-tight mb-8">About the Project</h2>
             
             <div className="prose prose-invert prose-lg max-w-none
@@ -169,7 +175,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                 {project.longDescription}
               </ReactMarkdown>
             </div>
-          </div>
+          </motion.div>
 
           {/* Sidebar */}
           <div className="md:col-span-4 flex flex-col gap-12 mt-4 md:mt-16">
