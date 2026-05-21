@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mosi Portfolio Template
 
-## Getting Started
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-black?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-black?style=for-the-badge&logo=tailwind-css&logoColor=06B6D4)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-black?style=for-the-badge&logo=typescript&logoColor=3178C6)](https://www.typescriptlang.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
 
-First, run the development server:
+A minimal, modern, and premium portfolio template built with Next.js, Tailwind CSS, and Framer Motion. Featuring a dark-mode-first design, smooth scroll animations, and a polished user experience.
+
+🔗 **Live Preview:** [mosi.my](https://mosi.my/)
+
+---
+
+## ✨ Features
+
+- **Premium Design:** Minimal, dark-mode focused UI with soft colors and sleek aesthetics.
+- **Smooth Animations:** High-end scroll interactions, page transitions, and micro-interactions powered by Framer Motion.
+- **Modern Stack:** Built with Next.js (App Router), React, and Tailwind CSS.
+- **Contact Form:** Integrated server actions with Resend for easy email delivery.
+- **Fully Responsive:** Beautifully optimized across all mobile and desktop devices.
+
+## 🚀 Getting Started
+
+Want to use this for your own portfolio? Feel free to fork or clone this repository and make it yours!
+
+### 1. Clone & Install
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/mosi-portfolio.git
+
+# Navigate to the project directory
+cd mosi-portfolio
+
+# Install dependencies
+npm install
+# or yarn install / pnpm install
+```
+
+### 2. Environment Variables
+
+Create a `.env.local` file in the root directory and add your required API keys (e.g., for the contact form):
+
+```env
+RESEND_API_KEY=your_resend_api_key_here
+```
+
+### 3. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Make It Yours
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This template is designed to be easily customized. To make it your own:
+- Update your personal details and links in the global configuration files.
+- Modify the sections in the `components/` directory (e.g., `AboutMe.tsx`, `TechStack.tsx`, `Contact.tsx`).
+- Adjust the styling and animations to fit your personal brand.
 
-## Learn More
+## ⭐️ Support
 
-To learn more about Next.js, take a look at the following resources:
+If you found this template helpful, inspiring, or used it to build your own portfolio, please consider giving it a **Star** ⭐️ or **Forking** it! 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions, feedback, and issues are always welcome.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is open-source and available under the [MIT License](LICENSE). Feel free to use it for personal or commercial projects.
