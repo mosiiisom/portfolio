@@ -3,6 +3,7 @@ export const siteConfig = {
   email: "hi@mosi.my",
   // this is just for the contact form, you can change it if you want
   senderEmail: "noreplay@contact.mosi.my",
+  replayEmail: "himosiiisom@gmail.com",
   links: {
     github: "https://github.com/mosiiisom",
     linkedin: "https://www.linkedin.com/in/mosiiisom/",
