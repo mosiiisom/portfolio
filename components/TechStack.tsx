@@ -25,6 +25,7 @@ import {
 import { Technology } from "@/lib/types";
 import TechCard from "./ui/TechCard";
 import TechStackTitle from "./ui/TechStackTitle";
+import { useI18n } from "./I18nProvider";
 
 const technologies : Technology[] = [
   // Core Modern Stack
@@ -193,6 +194,7 @@ const technologies : Technology[] = [
 
 export default function TechStack() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const { dict } = useI18n();
 
   return (
     <section id="tech" ref={containerRef} className="py-10 bg-background relative overflow-hidden">
@@ -206,7 +208,7 @@ export default function TechStack() {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 relative z-10 hover-target"
         >
           {technologies.map((tech, index) => (
-            <TechCard key={tech.name} tech={tech} index={index} />
+            <TechCard key={tech.name} tech={{ ...tech, desc: dict.tech.descriptions[tech.name] ?? tech.desc }} index={index} />
           ))}
 
         </motion.div>

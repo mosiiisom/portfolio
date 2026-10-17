@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion, cubicBezier } from "motion/react";
 import ScrambleText from "@/components/ui/ScrambleText";
-import { ArrowLeft } from "lucide-react";
+import { RefreshCw } from "lucide-react";
+import { useI18n } from "@/components/I18nProvider";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,7 +28,9 @@ const itemVariants = {
   },
 };
 
-export default function NotFound() {
+export default function ServiceUnavailable() {
+  const { dict } = useI18n();
+  const t = dict.unavailable;
   return (
     <main className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Subtle background glow */}
@@ -42,30 +44,29 @@ export default function NotFound() {
       >
         <motion.div variants={itemVariants} className="mb-6 relative">
           <h1 className="text-[8rem] leading-none md:text-[12rem] font-bold text-white/5 tracking-tighter absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none">
-            404
+            503
           </h1>
           <h1 className="text-6xl md:text-8xl font-bold text-white tracking-tighter relative z-10">
-            <ScrambleText text="404" />
+            <ScrambleText text="503" />
           </h1>
         </motion.div>
         
         <motion.h2 variants={itemVariants} className="text-2xl md:text-3xl text-white/90 font-medium mb-4">
-          Page Not Found
+          {t.title}
         </motion.h2>
         
         <motion.p variants={itemVariants} className="text-white/60 max-w-md mx-auto mb-10">
-          The page you are looking for doesn&apos;t exist or has been moved. 
-          Let&apos;s get you back on track.
+          {t.text}
         </motion.p>
         
         <motion.div variants={itemVariants}>
-          <Link 
-            href="/"
-            className="px-8 py-4 border-2 border-white/10 text-white font-medium rounded-xl hover:bg-white/5 transition-all duration-300 inline-flex items-center gap-3 group"
+          <button 
+            onClick={() => window.location.reload()}
+            className="px-8 py-4 border-2 border-transparent font-semibold bg-accent text-black rounded-xl hover:bg-foreground hover:text-background transition-all duration-300 inline-flex items-center gap-3 group"
           >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            Back to Home
-          </Link>
+            <RefreshCw className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" />
+            {t.refresh}
+          </button>
         </motion.div>
       </motion.div>
     </main>

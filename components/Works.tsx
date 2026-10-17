@@ -5,11 +5,11 @@ import { motion, AnimatePresence, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { works } from "@/lib/works";
+import type { LocalizedWork } from "@/lib/works";
+import { useI18n } from "./I18nProvider";
 
-
-
-export default function Works() {
+export default function Works({ works }: { works: LocalizedWork[] }) {
+  const { dict, href } = useI18n();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   // Smooth mouse tracking using Framer Motion springs
@@ -29,24 +29,23 @@ export default function Works() {
   }, [mouseX, mouseY]);
 
   return (
-    <section className="bg-background relative w-full h-full">
+    <section id="projects" className="bg-background relative w-full h-full">
       <div className="py-24 px-4 md:px-8 max-w-7xl mx-auto w-full relative ">
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
-              Selected Works
+              {dict.works.title}
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
           </div>
           <p className="text-white/50 max-w-sm text-sm md:text-base">
-            A collection of my recent work, showcasing a mix of product design,
-            frontend development, and creative engineering.
+            {dict.works.subtitle}
           </p>
         </div>
 
         <div className="w-full flex flex-col border-t border-white/10 relative">
           {works.map((work, index) => (
-            <Link href={work.link} key={work.id} className="block">
+            <Link href={href(`/works/${work.id}`)} key={work.id} className="block" aria-label={`${dict.works.viewProject}: ${work.title}`}>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +61,7 @@ export default function Works() {
               </div>
 
               {/* Title & Description */}
-              <div className="flex-1 md:pr-12 mb-6 md:mb-0">
+              <div className="flex-1 md:pe-12 mb-6 md:mb-0">
                 <h3 className="text-3xl md:text-5xl font-semibold text-white mb-3 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all duration-300">
                   {work.title}
                 </h3>
@@ -86,7 +85,7 @@ export default function Works() {
               {/* More Info Button */}
               <div className="md:w-24 flex justify-start md:justify-end">
                 <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:bg-white group-hover:border-white transition-all duration-500 shadow-lg">
-                  <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black group-hover:scale-110 group-hover:rotate-45 transition-transform duration-500" />
+                  <ArrowUpRight className="w-6 h-6 md:w-8 md:h-8 text-white group-hover:text-black group-hover:scale-110 group-hover:rotate-45 rtl:-scale-x-100 transition-transform duration-500" />
                 </div>
               </div>
               </motion.div>

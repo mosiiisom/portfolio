@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/I18nProvider";
 
 interface PreloaderProps {
   /** Duration of the loading animation in seconds */
@@ -11,6 +12,7 @@ interface PreloaderProps {
 }
 
 export default function PercentageLoader({ duration = 1.5, onComplete }: PreloaderProps) {
+  const { dict } = useI18n();
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
 
@@ -79,7 +81,7 @@ export default function PercentageLoader({ duration = 1.5, onComplete }: Preload
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
                 className="text-[10px] sm:text-xs tracking-[0.3em] text-zinc-400 font-medium uppercase"
               >
-                Initializing
+                {dict.loader.label}
               </motion.span>
               <motion.span 
                 initial={{ y: 20, opacity: 0 }}
@@ -99,7 +101,7 @@ export default function PercentageLoader({ duration = 1.5, onComplete }: Preload
               className="w-full h-[1px] bg-zinc-800 relative overflow-hidden"
             >
               <motion.div 
-                className="absolute top-0 left-0 h-full bg-white"
+                className="absolute top-0 start-0 h-full bg-white"
                 style={{ width: `${progress}%` }}
               />
             </motion.div>

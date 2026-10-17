@@ -2,32 +2,11 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-const EXPERIENCES = [
-  {
-    id: 1,
-    title: "Full Stack Engineer",
-    company: "CWN",
-    date: "Jan 2018 - Dec 2025",
-    description: "Developing advanced trading and blockchain solutions for crypto traders, focusing on scalable architectures and high-performance applications.",
-  },
-  {
-    id: 2,
-    title: "Freelance Web Developer",
-    company: "Freelance",
-    date: "Dec 2017 - Dec 2018",
-    description: "Built tailored WordPress and WooCommerce solutions, including custom themes and plugins, for various businesses and e-shops.",
-  },
-  {
-    id: 3,
-    title: "Wordpress Developer",
-    company: "Rayansaz",
-    date: "Jan 2016 - Dec 2017",
-    description: "Developed custom WordPress themes and WooCommerce plugins for enterprises and e-commerce stores, delivering seamless digital experiences.",
-  }
-];
+import { useI18n } from "./I18nProvider";
 
 export default function Experiences() {
+  const { dict } = useI18n();
+  const t = dict.experience;
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -48,10 +27,10 @@ export default function Experiences() {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-[clamp(32px,5vw,64px)] font-bold tracking-tight text-white mb-4">
-            Experiences
+            {t.title}
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            A journey of crafting digital experiences with passion and precision.
+            {t.subtitle}
           </p>
         </motion.div>
       </div>
@@ -84,12 +63,12 @@ export default function Experiences() {
 
         {/* Experience Items */}
         <div className="relative z-10 flex flex-col gap-14">
-          {EXPERIENCES.map((exp, index) => {
+          {t.items.map((exp, index) => {
             const isEven = index % 2 === 0;
 
             return (
               <motion.div
-                key={exp.id}
+                key={exp.title}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -101,7 +80,7 @@ export default function Experiences() {
                 {/* Node dot on the timeline */}
                 <div className="absolute hidden md:block left-8 md:left-1/2 top-0 -translate-x-1/2 w-4 h-4 rounded-full bg-zinc-950 border-2 border-white z-20 mt-2" />
 
-                <div className={`ml-0 md:ml-0 w-full md:w-[45%] ${isEven ? "md:pr-16" : "md:pl-16"}`}>
+                <div className={`ml-0 md:ml-0 w-full md:w-[45%] ${isEven ? "md:pe-16" : "md:ps-16"}`}>
                   <div className="group relative bg-zinc-900/20 border border-white/5 backdrop-blur-md p-8 rounded-3xl hover:bg-zinc-900/50 transition-colors duration-500">
                     {/* Hover Gradient Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />

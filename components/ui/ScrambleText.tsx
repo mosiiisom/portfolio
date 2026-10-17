@@ -33,6 +33,8 @@ type ScrambleTextProps<T extends ElementType = 'span'> = {
 } & ComponentPropsWithoutRef<T>;
 
 const CHARS = '!@#$%^&*()_+{}[]|;:,.<>?~abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const PERSIAN_CHARS = 'ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی۰۱۲۳۴۵۶۷۸۹';
+const PERSIAN_RE = /[\u0600-\u06FF]/;
 
 export default function ScrambleText<T extends ElementType = 'span'>({
   as,
@@ -46,11 +48,14 @@ export default function ScrambleText<T extends ElementType = 'span'>({
   repeatDelayMin,
   repeatDelayMax,
   repeatIndices = [],
-  chars = CHARS,
+  chars: charsProp,
   onHover = true,
   maxTicks = 12,
   ...props
 }: ScrambleTextProps<T>) {
+
+  // Persian text scrambles with Persian letters so the glyph shapes stay consistent.
+  const chars = charsProp ?? (PERSIAN_RE.test(text) ? PERSIAN_CHARS : CHARS);
 
   const [displayText, setDisplayText] = useState(text);
   const [isAnimating, setIsAnimating] = useState(false);
