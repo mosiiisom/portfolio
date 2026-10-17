@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Send, CheckCircle2, AlertCircle, Calendar } from "lucide-react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaTelegramPlane } from "react-icons/fa";
 import { siteConfig } from "@/config/site";
 import { sendEmail } from "@/app/actions/send-email";
 import { useI18n } from "./I18nProvider";
@@ -70,7 +70,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.emailLabel}</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500" dir="ltr">{siteConfig.email}</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500 rtl:text-right" dir="ltr">{siteConfig.email}</p>
                 </div>
               </a>
 
@@ -84,13 +84,13 @@ export default function Contact() {
                 </div>
               </a>
 
-              <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-5 p-4 rounded-3xl bg-zinc-900/20 border border-white/5 hover:bg-zinc-900/50 hover:border-white/10 transition-all duration-500 backdrop-blur-md">
-                <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-zinc-950 group-hover:bg-white/20 group-hover:text-white transition-colors duration-500">
-                  <FaGithub className="w-6 h-6 text-zinc-300 group-hover:text-white transition-colors duration-500" />
+              <a href={siteConfig.links.telegram} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-5 p-4 rounded-3xl bg-zinc-900/20 border border-white/5 hover:bg-zinc-900/50 hover:border-white/10 transition-all duration-500 backdrop-blur-md">
+                <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-zinc-950 group-hover:bg-sky-500/20 group-hover:text-sky-400 transition-colors duration-500">
+                  <FaTelegramPlane className="w-6 h-6 text-zinc-300 group-hover:text-sky-400 transition-colors duration-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.githubLabel}</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">{t.githubText}</p>
+                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.telegramLabel}</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500 rtl:text-right" dir="ltr">@mosiiisom</p>
                 </div>
               </a>
 
