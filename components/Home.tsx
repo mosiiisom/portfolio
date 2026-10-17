@@ -9,8 +9,9 @@ import Works from "@/components/Works";
 import Experiences from "@/components/Experiences";
 import Contact from "@/components/Contact";
 import PercentageLoader from "@/components/ui/percentage-loader";
+import type { LocalizedWork } from "@/lib/works";
 
-export default function Home() {
+export default function Home({ works }: { works: LocalizedWork[] }) {
   const [isLoaderDone, setIsLoaderDone] = useState(false);
 
   return (
@@ -23,7 +24,7 @@ export default function Home() {
       <AboutMe/>
       <TechStack/>
       <Experiences/>
-      <Works/>
+      <Works works={works} />
       <Contact/>
       {/* <InteractiveGrid /> */}
     </main>

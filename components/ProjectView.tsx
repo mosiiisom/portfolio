@@ -1,7 +1,7 @@
-"use client";   // ← ADD THIS AT THE VERY TOP
+"use client";
 
-import { works } from "@/lib/works";
-import { notFound } from "next/navigation";
+import type { LocalizedWork } from "@/lib/works";
+import { useI18n } from "./I18nProvider";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -12,14 +12,11 @@ import { Components } from 'react-markdown';
 import { motion } from "framer-motion";
 import React from "react";
 
-interface ProjectPageProps {
-  params: Promise<{ id: string }>;
-}
-
 // Markdown Components
 const markdownComponents: Components = {
+  // The project title is the page's only <h1>; markdown h1s render as <h2>.
   h1: ({ node, ...props }) => (
-    <h1 className="text-4xl font-bold tracking-tight mt-12 mb-6 text-white" {...props} />
+    <h2 className="text-4xl font-bold tracking-tight mt-12 mb-6 text-white" {...props} />
   ),
   h2: ({ node, ...props }) => (
     <h2 className="text-3xl font-semibold tracking-tight mt-10 mb-5 text-white" {...props} />
@@ -31,10 +28,10 @@ const markdownComponents: Components = {
     <p className="mb-6 text-white/75 leading-relaxed" {...props} />
   ),
   ul: ({ node, ...props }) => (
-    <ul className="list-disc pl-6 mb-6 space-y-3 text-white/75" {...props} />
+    <ul className="list-disc ps-6 mb-6 space-y-3 text-white/75" {...props} />
   ),
   ol: ({ node, ...props }) => (
-    <ol className="list-decimal pl-6 mb-6 space-y-3 text-white/75" {...props} />
+    <ol className="list-decimal ps-6 mb-6 space-y-3 text-white/75" {...props} />
   ),
   a: ({ node, ...props }) => (
     <a 
@@ -63,27 +60,22 @@ const markdownComponents: Components = {
   },
 };
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  // Note: We can't use async/await directly in client components for params in app router
-  // So we need to handle it differently or keep metadata separate.
-
-  const resolvedParams = React.use(params);
-  const project = works.find((w) => w.id === resolvedParams.id);
-
-  if (!project) notFound();
+export default function ProjectView({ project }: { project: LocalizedWork }) {
+  const { dict, href } = useI18n();
+  const t = dict.project;
 
   return (
     <div className="min-h-screen bg-background text-white selection:bg-[#72ebfa]/20">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-6 md:px-12 backdrop-blur-md bg-background/80 border-b border-white/5">
         <Link
-          href="/"
+          href={`${href("/")}#projects`}
           className="group flex items-center gap-2 text-white/70 hover:text-white transition-all duration-300"
         >
           <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 group-hover:bg-white group-hover:border-white transition-all duration-300">
-            <ArrowLeft className="w-5 h-5 text-white group-hover:text-black transition-colors" />
+            <ArrowLeft className="w-5 h-5 text-white group-hover:text-black transition-colors rtl:-scale-x-100" />
           </div>
-          <span className="font-medium tracking-wide">Back to Works</span>
+          <span className="font-medium tracking-wide">{t.back}</span>
         </Link>
 
         <div className="flex items-center gap-4">
@@ -95,7 +87,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-white/30 hover:bg-white/5 transition-all duration-300 text-sm font-medium"
             >
               <FaGithub className="w-4 h-4" />
-              <span className="hidden md:inline">Source Code</span>
+              <span className="hidden md:inline">{t.source}</span>
             </a>
           )}
           {project.live && (
@@ -106,7 +98,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               className="flex items-center gap-2 px-5 py-2 rounded-full bg-[#72ebfa] text-black hover:bg-[#72ebfa]/90 font-medium transition-all duration-300"
             >
               <ExternalLink className="w-4 h-4" />
-              Live Preview
+              {t.live}
             </a>
           )}
         </div>
@@ -121,7 +113,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-block mb-6 px-5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-sm font-mono tracking-[3px] text-white/50">
-              PROJECT {project.id}
+              {t.label} {project.id}
             </div>
 
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/60">
@@ -161,7 +153,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           transition={{ duration: 0.8 }}
 
            className="md:col-span-8">
-            <h2 className="text-3xl font-semibold tracking-tight mb-8">About the Project</h2>
+            <h2 className="text-3xl font-semibold tracking-tight mb-8">{t.about}</h2>
             
             <div className="prose prose-invert prose-lg max-w-none
                           prose-headings:text-white 
@@ -180,7 +172,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           {/* Sidebar */}
           <div className="md:col-span-4 flex flex-col gap-12 mt-4 md:mt-16">
             <div>
-              <h3 className="text-sm font-mono text-white/40 mb-6 uppercase tracking-widest">Technologies</h3>
+              <h3 className="text-sm font-mono text-white/40 mb-6 uppercase tracking-widest">{t.technologies}</h3>
               <div className="flex flex-wrap gap-3">
                 {project.stacks.map((stack) => (
                   <span
@@ -194,14 +186,18 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             <div>
-              <h3 className="text-sm font-mono text-white/40 mb-4 uppercase tracking-widest">Role</h3>
-              <p className="text-white/80 text-lg">Design & Full Development</p>
+              <h3 className="text-sm font-mono text-white/40 mb-4 uppercase tracking-widest">{t.role}</h3>
+              <p className="text-white/80 text-lg">{project.role}</p>
             </div>
 
             <div>
-              <h3 className="text-sm font-mono text-white/40 mb-4 uppercase tracking-widest">Year</h3>
-              <p className="text-white/80 text-lg">2026</p>
+              <h3 className="text-sm font-mono text-white/40 mb-4 uppercase tracking-widest">{t.year}</h3>
+              <p className="text-white/80 text-lg">{project.year}</p>
             </div>
+
+            {!project.github && (
+              <p className="text-sm text-white/40 leading-relaxed">{t.closedSource}</p>
+            )}
           </div>
         </div>
       </main>

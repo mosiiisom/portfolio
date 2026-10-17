@@ -1,6 +1,10 @@
+"use client";
+
 import { siteConfig } from "@/config/site";
+import { useI18n } from "@/components/I18nProvider";
 
 export default function NavbarHireMeBtn() {
+  const { dict } = useI18n();
   return (
     <div className="relative w-40 h-10  flex flex-col items-center justify-center hire-me-btn pixel-font">
       <div className="absolute top-0 right-0 flex items-stretch justify-between w-full min-h-full box-wrapper">
@@ -42,8 +46,8 @@ export default function NavbarHireMeBtn() {
         </div>
       </div>
       <a href={siteConfig.links.cal} target="_blank" rel="noopener noreferrer"  className="relative w-full flex justify-center overflow-hidden text-content">
-        <p className="default-text">Hire Me !</p>
-        <p className="absolute translate-y-[100%]">schedule a call !</p>
+        <p className="default-text">{dict.nav.hireMe}</p>
+        <p className="absolute translate-y-[100%]">{dict.nav.scheduleCall}</p>
       </a>
     </div>
   );

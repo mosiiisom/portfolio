@@ -6,8 +6,11 @@ import { Mail, Send, CheckCircle2, AlertCircle, Calendar } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/config/site";
 import { sendEmail } from "@/app/actions/send-email";
+import { useI18n } from "./I18nProvider";
 
 export default function Contact() {
+  const { dict, locale } = useI18n();
+  const t = dict.contact;
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -37,10 +40,10 @@ export default function Contact() {
           className="text-center mb-16"
         >
           <h2 className="text-[clamp(32px,5vw,64px)] font-bold tracking-tight text-white mb-4">
-            Let&apos;s Connect
+            {t.title}
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
-            Feel free to reach out for collaborations or just a friendly hello.
+            {t.subtitle}
           </p>
         </motion.div>
 
@@ -54,9 +57,9 @@ export default function Contact() {
             className="flex flex-col gap-8"
           >
             <div>
-              <h3 className="text-2xl font-medium text-white mb-3">Get in touch</h3>
+              <h3 className="text-2xl font-medium text-white mb-3">{t.getInTouch}</h3>
               <p className="text-zinc-400 leading-relaxed font-light">
-                I&apos;m currently open to new opportunities. Whether you have a question or just want to say&nbsp;hi, I&apos;ll try my best to get back to you!
+                {t.intro}
               </p>
             </div>
 
@@ -66,8 +69,8 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-zinc-300 group-hover:text-indigo-400 transition-colors duration-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">EMAIL</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">{siteConfig.email}</p>
+                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.emailLabel}</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500" dir="ltr">{siteConfig.email}</p>
                 </div>
               </a>
 
@@ -76,8 +79,8 @@ export default function Contact() {
                   <FaLinkedin className="w-6 h-6 text-zinc-300 group-hover:text-blue-400 transition-colors duration-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">LINKEDIN</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">Let&apos;s connect</p>
+                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.linkedinLabel}</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">{t.linkedinText}</p>
                 </div>
               </a>
 
@@ -86,8 +89,8 @@ export default function Contact() {
                   <FaGithub className="w-6 h-6 text-zinc-300 group-hover:text-white transition-colors duration-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">GITHUB</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">Check out my repos</p>
+                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.githubLabel}</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">{t.githubText}</p>
                 </div>
               </a>
 
@@ -96,8 +99,8 @@ export default function Contact() {
                   <Calendar className="w-6 h-6 text-zinc-300 group-hover:text-purple-400 transition-colors duration-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">MEETING</p>
-                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">Book a call</p>
+                  <p className="text-sm text-zinc-500 font-mono tracking-wider mb-1">{t.meetingLabel}</p>
+                  <p className="text-zinc-300 group-hover:text-white transition-colors duration-500">{t.meetingText}</p>
                 </div>
               </a>
             </div>
@@ -111,36 +114,38 @@ export default function Contact() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <form action={handleSubmit} className="flex flex-col gap-5 bg-zinc-900/20 border border-white/5 p-8 md:p-10 rounded-[2rem] backdrop-blur-md hover:bg-zinc-900/30 transition-colors duration-500">
+              <input type="hidden" name="locale" value={locale} />
               <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-sm text-zinc-400 font-medium ml-1">Name</label>
+                <label htmlFor="name" className="text-sm text-zinc-400 font-medium ms-1">{t.nameLabel}</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  placeholder="John Doe"
+                  placeholder={t.namePlaceholder}
                   className="bg-zinc-950/50 border border-white/5 rounded-2xl px-5 py-4 text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all duration-300"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-sm text-zinc-400 font-medium ml-1">Email</label>
+                <label htmlFor="email" className="text-sm text-zinc-400 font-medium ms-1">{t.emailFieldLabel}</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  placeholder="john@example.com"
+                  placeholder={t.emailPlaceholder}
+                  dir="ltr"
                   className="bg-zinc-950/50 border border-white/5 rounded-2xl px-5 py-4 text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all duration-300"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="text-sm text-zinc-400 font-medium ml-1">Message</label>
+                <label htmlFor="message" className="text-sm text-zinc-400 font-medium ms-1">{t.messageLabel}</label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows={4}
-                  placeholder="Tell me about your project..."
+                  placeholder={t.messagePlaceholder}
                   className="bg-zinc-950/50 border border-white/5 rounded-2xl px-5 py-4 text-zinc-300 placeholder:text-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all duration-300 resize-none"
                 />
               </div>
@@ -155,7 +160,7 @@ export default function Contact() {
               {status === "success" && (
                 <div className="flex items-center gap-2 text-emerald-400 bg-emerald-400/10 p-3 rounded-xl text-sm">
                   <CheckCircle2 className="w-4 h-4" />
-                  <p>Message sent successfully! I&apos;ll get back to you soon.</p>
+                  <p>{t.success}</p>
                 </div>
               )}
 
@@ -164,9 +169,9 @@ export default function Contact() {
                 disabled={status === "loading" || status === "success"}
                 className="mt-2 flex items-center justify-center gap-3 bg-white text-black font-medium px-6 py-4 rounded-2xl hover:bg-zinc-200 transition-colors duration-300 group disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {status === "loading" ? "Sending..." : status === "success" ? "Sent" : "Send Message"}
+                {status === "loading" ? t.sending : status === "success" ? t.sent : t.send}
                 {status !== "loading" && status !== "success" && (
-                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1 transition-transform duration-300" />
                 )}
               </button>
             </form>
@@ -177,7 +182,7 @@ export default function Contact() {
       {/* Simple Footer */}
       <div className="absolute bottom-6 left-0 w-full text-center">
         <p className="text-zinc-600 text-sm font-light">
-          © {new Date().getFullYear()} Mosi. All rights reserved.
+          © {new Date().getFullYear()} {t.footer}
         </p>
       </div>
     </section>

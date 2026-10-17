@@ -17,7 +17,8 @@ export default function TechStackTitle({wrapperClasse="",classnames = ""}) {
       ref={containerRef} 
       className={clsx(wrapperClasse,`letter-scroll flex flex-col justify-center items-center h-[200px] lg:h-[400px] py-2`)}
     >
-      <div className={clsx(classnames,'text-[clamp(48px,8vw,150px)] font-bold tracking-tight leading-[0.9] lg:leading-[0.85] overflow-hidden flex text-white')}>
+      {/* Latin wordmark: keep letter order fixed in RTL pages */}
+      <div dir="ltr" className={clsx(classnames,'text-[clamp(48px,8vw,150px)] font-bold tracking-tight leading-[0.9] lg:leading-[0.85] overflow-hidden flex text-white')}>
         
         {/* T */}
         <motion.span 

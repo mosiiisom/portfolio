@@ -236,22 +236,22 @@ nav .hire-me-btn:hover {
 
 #about {
   p span {
-    padding: 0 0 0 0.7em;
+    padding-inline-start: 0.7em;
     @apply inline-block
   }
 
   .word1 {
       will-change: transform;
-      padding: 0 0 0 2.4em;
+      padding-inline-start: 2.4em;
   }
 
   .word2 {
         will-change: transform;
-        padding: 0 1.6em 0 0;
+        padding-inline: 0 1.6em;
   }
   .word3 {
         will-change: transform;
-        padding: 0 0 0 2.4em;
+        padding-inline-start: 2.4em;
   }
   .word0 {
 
@@ -324,4 +324,13 @@ nav .hire-me-btn:hover {
   .mosi-cursor-area {
     cursor: none !important;
   }
+}
+/* Persian (RTL): Vazirmatn as the primary face, Latin glyphs fall back to Geist. */
+html[lang="fa"] {
+  font-family: var(--font-vazirmatn), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Letter-spacing breaks the joins of Persian script. */
+html[lang="fa"] body * {
+  letter-spacing: normal !important;
 }

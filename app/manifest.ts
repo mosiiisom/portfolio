@@ -7,6 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Mosi",
     description: siteConfig.description,
     start_url: '/',
+    lang: 'fa',
+    dir: 'rtl',
     display: 'standalone',
     background_color: '#000000',
     theme_color: '#000000',

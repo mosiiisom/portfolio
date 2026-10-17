@@ -7,6 +7,7 @@ import {
   cubicBezier,
 } from "motion/react";
 import { useEffect, useRef } from "react";
+import { useI18n } from "./I18nProvider";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -44,6 +45,8 @@ const buttonVariants = {
 };
 
 export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
+  const { dict } = useI18n();
+  const t = dict.hero;
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Mouse position values
@@ -119,21 +122,21 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
         <div className="min-h-screen w-full flex items-center">
           <div className="grid grid-cols-24 gap-8 w-full">
             <motion.div
-              className="col-span-12 md:col-span-15 flex flex-col justify-center items-start tracking-[-0.02em]"
+              className="col-span-12 md:col-span-15 rtl:md:col-start-10 flex flex-col justify-center items-start tracking-[-0.02em]"
               variants={containerVariants}
               initial="hidden"
               animate={isReady ? "visible" : "hidden"}
             >
               {/* H5 */}
               <motion.h5 className="text-white/86" variants={itemVariants}>
-                &quot;Hi, I&apos;m{" "}
-                <ScrambleText text="MOSI >_" className="text-accent mosi" />{" "}
-                — your partner in building what&apos;s next.&quot;
+                {t.greetingBefore}{" "}
+                <ScrambleText text="MOSI >_" dir="ltr" className="text-accent mosi" />{" "}
+                {t.greetingAfter}
               </motion.h5>
 
               {/* H1 */}
               <motion.h1 className="text-white mt-3 sm:text-3xl" variants={itemVariants}>
-                Turning <ScrambleText text="Complex" as="span" repeat={true} className="text-center" repeatIndices={[0]} repeatDelayMin={1500} repeatDelayMax={4000} /> Ideas into Scalable Digital Reality.
+                {t.titleBefore} <ScrambleText text={t.titleHighlight} as="span" repeat={true} className="text-center" repeatIndices={[0]} repeatDelayMin={1500} repeatDelayMax={4000} /> {t.titleAfter}
               </motion.h1>
 
               {/* Paragraph */}
@@ -141,9 +144,8 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
                 className="text-white/86 mt-3 text-[1rem]"
                 variants={itemVariants}
               >
-                Full-stack expertise focused on solving your technical
-                bottlenecks
-                <br /> so you can focus on growing your business.
+                {t.subtitleLine1}
+                <br /> {t.subtitleLine2}
               </motion.p>
 
               {/* Buttons */}
@@ -160,7 +162,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  See My Work
+                  {t.ctaWork}
                 </motion.a>
 
                 <motion.a
@@ -170,7 +172,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Get In Touch
+                  {t.ctaContact}
                 </motion.a>
               </motion.div>
             </motion.div>
