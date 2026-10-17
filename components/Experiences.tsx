@@ -26,7 +26,7 @@ export default function Experiences() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-[clamp(32px,5vw,64px)] font-bold tracking-tight text-white mb-4">
+          <h2 className="text-[clamp(32px,5vw,64px)] fa:text-[clamp(28px,4vw,52px)] fa:leading-snug font-bold tracking-tight text-white mb-4">
             {t.title}
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
@@ -86,7 +86,7 @@ export default function Experiences() {
                     <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
                     
                     <span className="text-zinc-500 text-sm font-mono tracking-wider block mb-3">{exp.date}</span>
-                    <h3 className="text-2xl font-medium text-white mb-2">{exp.title}</h3>
+                    <h3 className="text-2xl fa:text-xl fa:font-semibold font-medium text-white mb-2">{exp.title}</h3>
                     <h4 className="text-lg text-zinc-400 mb-6">{exp.company}</h4>
                     <p className="text-zinc-300 leading-relaxed font-light">
                       {exp.description}

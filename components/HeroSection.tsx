@@ -135,7 +135,7 @@ export default function HeroSection({ isReady = true }: { isReady?: boolean }) {
               </motion.h5>
 
               {/* H1 */}
-              <motion.h1 className="text-white mt-3 sm:text-3xl" variants={itemVariants}>
+              <motion.h1 className="text-white mt-3 sm:text-3xl fa:md:text-5xl fa:leading-[1.45]" variants={itemVariants}>
                 {t.titleBefore} <ScrambleText text={t.titleHighlight} as="span" repeat={true} className="text-center" repeatIndices={[0]} repeatDelayMin={1500} repeatDelayMax={4000} /> {t.titleAfter}
               </motion.h1>
 

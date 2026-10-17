@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* Persian-only overrides, e.g. `fa:text-2xl` */
+@custom-variant fa (&:lang(fa));
+
 :root {
   --primary: oklch(0.205 0 0);
   /* --accent: oklch(0.88 0.21 157.33); */
@@ -328,6 +331,15 @@ nav .hire-me-btn:hover {
 /* Persian (RTL): Vazirmatn as the primary face, Latin glyphs fall back to Geist. */
 html[lang="fa"] {
   font-family: var(--font-vazirmatn), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Persian script needs more vertical room than Latin. */
+html[lang="fa"] :is(p, li):not(.about-text) {
+  line-height: 1.9;
+}
+
+html[lang="fa"] .about-text {
+  line-height: 1.75;
 }
 
 /* Letter-spacing breaks the joins of Persian script. */

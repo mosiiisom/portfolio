@@ -29,7 +29,7 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
         image: absoluteUrl("/images/mosi.png"),
         email: `mailto:${siteConfig.email}`,
         address: { "@type": "PostalAddress", addressCountry: "IR" },
-        sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
+        sameAs: [siteConfig.links.github, siteConfig.links.linkedin, siteConfig.links.telegram],
         knowsAbout: [
           "Next.js", "React", "TypeScript", "Tailwind CSS", "Python", "FastAPI", "Django",
           "PHP", "Laravel", "WordPress", "WooCommerce", "Docker", "Technical SEO",

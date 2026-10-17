@@ -12,7 +12,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/5 backdrop-blur-[1px]">
       <div className="container mx-auto px-6 h-16 flex justify-between items-center">
         <div className="flex flex-col">
-          <ScrambleText text="MOSI >_" dir="ltr" className="text-white/86 mosi" />
+          <ScrambleText text="MOSI >_" dir="ltr" className="text-white/86 mosi rtl:text-right" />
           <span className="text-sm text-white/45">{dict.nav.role}</span>
         </div>
         <div className="hidden md:flex flex-col">

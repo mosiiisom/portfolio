@@ -7,7 +7,8 @@ export default function NavbarHireMeBtn() {
   const { dict } = useI18n();
   return (
     <div className="relative w-40 h-10  flex flex-col items-center justify-center hire-me-btn pixel-font">
-      <div className="absolute top-0 right-0 flex items-stretch justify-between w-full min-h-full box-wrapper">
+      {/* Corner brackets are drawn for LTR; keep them mirrored correctly in RTL */}
+      <div dir="ltr" className="absolute top-0 right-0 flex items-stretch justify-between w-full min-h-full box-wrapper">
         <div className="flex flex-col justify-between">
             <svg
             viewBox="0 0 16 16"
