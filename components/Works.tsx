@@ -33,7 +33,7 @@ export default function Works({ works }: { works: LocalizedWork[] }) {
       <div className="py-24 px-4 md:px-8 max-w-7xl mx-auto w-full relative ">
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
+            <h2 className="text-4xl md:text-6xl fa:text-3xl fa:md:text-5xl fa:leading-snug font-bold tracking-tight text-white mb-6">
               {dict.works.title}
             </h2>
             <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
@@ -62,7 +62,7 @@ export default function Works({ works }: { works: LocalizedWork[] }) {
 
               {/* Title & Description */}
               <div className="flex-1 md:pe-12 mb-6 md:mb-0">
-                <h3 className="text-3xl md:text-5xl font-semibold text-white mb-3 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all duration-300">
+                <h3 className="text-3xl md:text-5xl fa:text-2xl fa:md:text-[2.25rem] fa:leading-snug fa:font-bold font-semibold text-white mb-3 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all duration-300">
                   {work.title}
                 </h3>
                 <p className="text-white/50 text-base md:text-lg max-w-xl group-hover:text-white/80 transition-colors duration-300">

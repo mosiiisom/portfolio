@@ -39,7 +39,7 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-[clamp(32px,5vw,64px)] font-bold tracking-tight text-white mb-4">
+          <h2 className="text-[clamp(32px,5vw,64px)] fa:text-[clamp(28px,4vw,52px)] fa:leading-snug font-bold tracking-tight text-white mb-4">
             {t.title}
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
